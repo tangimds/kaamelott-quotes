@@ -1,10 +1,10 @@
-const path = require("path");
+// const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const helmet = require("helmet");
-const yup = require("yup");
-const { nanoid } = require("nanoid");
+// const yup = require("yup");
+// const { nanoid } = require("nanoid");
 
 require("dotenv").config();
 
