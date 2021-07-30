@@ -21,9 +21,60 @@ const _random = (array) => array[Math.floor(Math.random() * array.length)];
 app.get("/", async (req, res, next) => {
   try {
     const { from } = req.query;
-    console.log(from);
     return res.status(200).send({ ok: true, data: _random(quotes) });
   } catch (error) {
+    return res.status(500).send({ ok: false, code: "SERVER_ERROR" });
+  }
+});
+app.get("/:id", async (req, res, next) => {
+  try {
+    const { from } = req.query;
+    const { id } = req.params;
+    const quotesScope = quotes.filter((quote) => quote.id?.toString() === id);
+    return res.status(200).send({ ok: true, data: _random(quotesScope) });
+  } catch (error) {
+    return res.status(500).send({ ok: false, code: "SERVER_ERROR" });
+  }
+});
+app.get("/character/:char", async (req, res, next) => {
+  try {
+    const { from } = req.query;
+    const { char } = req.params;
+    const quotesScope = quotes.filter((quote) =>
+      quote.character?.includes(char)
+    );
+    return res.status(200).send({ ok: true, data: _random(quotesScope) });
+  } catch (error) {
+    return res.status(500).send({ ok: false, code: "SERVER_ERROR" });
+  }
+});
+app.get("/season/:season", async (req, res, next) => {
+  try {
+    const { from } = req.query;
+    let { season } = req.params;
+    if (season === "1") season = "I";
+    if (season === "2") season = "II";
+    if (season === "3") season = "III";
+    if (season === "4") season = "IV";
+    if (season === "5") season = "V";
+    if (season === "6") season = "VI";
+    const quotesScope = quotes.filter(
+      (quote) => quote.season === `Livre ${season}`
+    );
+    return res.status(200).send({ ok: true, data: _random(quotesScope) });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({ ok: false, code: "SERVER_ERROR" });
+  }
+});
+app.get("/word/:w", async (req, res, next) => {
+  try {
+    const { from } = req.query;
+    const { w } = req.params;
+    const quotesScope = quotes.filter((quote) => quote.quote?.includes(w));
+    return res.status(200).send({ ok: true, data: _random(quotesScope) });
+  } catch (error) {
+    console.log(error);
     return res.status(500).send({ ok: false, code: "SERVER_ERROR" });
   }
 });
