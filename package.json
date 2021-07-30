@@ -1,19 +1,24 @@
 {
-  "name": "nailsucker",
+  "name": "server",
   "version": "1.0.0",
-  "description": "discord bot",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon -r dotenv/config ./src/index.js",
-    "start": "node ./src/index.js"
+    "start": "node server/index.js",
+    "dev": "nodemon server/index.js"
   },
-  "author": "Tangi Mendès <tangimds@gmail.com>",
-  "license": "ISC",
+  "keywords": [],
+  "author": "CJ R. <cj@null.computer> (https://w3cj.sh)",
+  "license": "MIT",
   "dependencies": {
-    "discord.js": "^12.4.1"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.6",
-    "dotenv": "^8.2.0"
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.22.0",
+    "monk": "^7.3.0",
+    "morgan": "^1.10.0",
+    "nanoid": "^3.1.9",
+    "nodemon": "^2.0.4",
+    "yup": "^0.29.1"
   }
 }
