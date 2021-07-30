@@ -1,14 +1,14 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "quotes kaamelott",
   "main": "index.js",
   "scripts": {
-    "start": "node server/index.js",
-    "dev": "nodemon server/index.js"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
   },
   "keywords": [],
-  "author": "CJ R. <cj@null.computer> (https://w3cj.sh)",
+  "author": "Tangi Mendes <tangimds@gmail.com> (https://tangimds.com)",
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
