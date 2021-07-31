@@ -1,5 +1,8 @@
 const formatSlackResponse = ({ quote, character, season, episode }) => {
-  return `${quote}\n\n${sign({ character, season, episode })}`;
+  return {
+    response_type: "in_channel",
+    text: `${quote}\n\n${sign({ character, season, episode })}`,
+  };
 };
 
 const sign = ({ character, season, episode }) => {
