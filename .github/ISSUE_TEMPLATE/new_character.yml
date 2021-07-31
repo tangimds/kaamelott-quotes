@@ -1,5 +1,5 @@
-name: Ajouter personnage
-description: Vous ne trouvez pas votre personnage préférée ? Ajoutez-le !
+name: Ajouter un personnage
+description: Vous ne trouvez pas votre personnage préféré ? Ajoutez-le !
 labels: [new_character]
 assignees:
   - tangimds
