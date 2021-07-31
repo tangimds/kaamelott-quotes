@@ -5,6 +5,7 @@ const helmet = require("helmet");
 const {
   formatSlackResponse,
   filter,
+  filterByProps,
   arabicToRoman,
   _random,
 } = require("./utils");
@@ -21,10 +22,10 @@ app.use(express.json());
 
 app.get("/slack", async (req, res, next) => {
   try {
-    const { season, character, quote } = req.query;
+    const { text } = req.query;
     const quotesScope = filter({
       array: quotes,
-      filters: { season: arabicToRoman(season), character, quote },
+      filter: text,
     });
     const data = _random(quotesScope);
     return res.status(200).send(formatSlackResponse(data));
@@ -33,26 +34,11 @@ app.get("/slack", async (req, res, next) => {
     return res.status(500).send({ ok: false, code: "INTERNAL_SERVER_ERROR" });
   }
 });
-// app.get("/:id", async (req, res, next) => {
-//   try {
-//     const { format } = req.query;
-//     const { id } = req.params;
-//     const quotesScope = quotes.filter((quote) => quote.id?.toString() === id);
-//     const data = _random(quotesScope);
-//     return res
-//       .status(200)
-//       .send(formatResponse({ format, data, total: quotesScope.length }));
-//   } catch (error) {
-//     console.log(error);
-//     return res
-//       .status(500)
-//       .send({ ok: false, message: "INTERNAL_SERVER_ERROR" });
-//   }
-// });
+
 app.get("/", async (req, res, next) => {
   try {
     const { season, character, quote } = req.query;
-    const quotesScope = filter({
+    const quotesScope = filterByProps({
       array: quotes,
       filters: { season: arabicToRoman(season), character, quote },
     });

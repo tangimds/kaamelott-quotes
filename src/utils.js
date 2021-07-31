@@ -16,20 +16,27 @@ const sign = ({ character, season, episode }) => {
 const bold = (x) => `*${x}*`;
 const italic = (x) => `_${x}_`;
 
-const formatResponse = ({ format, data, total }) => {
-  if (format === "slack") return formatSlackResponse(data);
-  return { ok: true, data, total };
-};
-
-const filter = ({ filters, array }) =>
+const filterByProps = ({ filters, array }) =>
   array.filter((e) => {
     let match = true;
     Object.keys(filters).forEach((f) => {
       if (!filters[f]) return;
-      return (match = match && e[f]?.includes(filters[f]));
+      return (match = match && _includes(e[f], filters[f]));
     });
     return match;
   });
+
+const filter = ({ filter, array }) =>
+  array.filter((e) => {
+    let match = false;
+    Object.keys(e).forEach((prop) => {
+      if (!e[prop] || typeof e[prop] !== "string") return;
+      return (match = match || _includes(e[prop], filter));
+    });
+    return match;
+  });
+
+const _includes = (a, b) => a.toLowerCase().includes(b.toLowerCase());
 
 const arabicToRoman = (e) => {
   if (e === "1") return "I";
@@ -66,7 +73,7 @@ const _random = (array) =>
 module.exports = {
   formatSlackResponse,
   filter,
+  filterByProps,
   arabicToRoman,
-  formatResponse,
   _random,
 };
