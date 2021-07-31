@@ -1,62 +1,80 @@
-name: Bug Report
-description: File a bug report
-title: "[Bug]: "
-labels: [bug, triage]
+name: Ajouter une citation
+description: Vous ne trouvez pas votre citation préférée ? Ajoutez-la !
+title: "[Quote]: "
+labels: [new_quote]
 assignees:
-  - octocat
+  - tangimds
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Thanks for taking the time to fill out this bug report!
   - type: input
     id: contact
     attributes:
-      label: Contact Details
-      description: How can we get in touch with you if we need more info?
-      placeholder: ex. email@example.com
+      label: Infos contact
+      description: Et si on a besoin de plus d'infos ?
+      placeholder: ex. culdechouette@kammelott.com
     validations:
       required: false
   - type: textarea
-    id: what-happened
+    id: quote
     attributes:
-      label: What happened?
-      description: Also tell us, what did you expect to happen?
-      placeholder: Tell us what you see!
-      value: "A bug happened!"
+      label: La citation
+      description: Une ou deux phrase, c'est parfait !
+      placeholder: Ce que je dis, tout le monde s'en tamponne ! Je gueule, je gueule, j'pourrais gueuler dans le cul d'un poney ce serait pareil !
     validations:
       required: true
   - type: dropdown
-    id: version
+    id: season
     attributes:
-      label: Version
-      description: What version of our software are you running?
+      label: Livre
+      description: Savez-vous dans quel Livre cette citation est entendue pour la première fois ?
       options:
-        - 1.0.2 (Default)
-        - 1.0.3 (Edge)
+        - Livre I
+        - Livre II
+        - Livre III
+        - Livre IV
+        - Livre V
+        - Livre VI
+    validations:
+      required: false
+  - type: input
+    id: episode
+    attributes:
+      label: Épisode
+      description: Savez-vous dans quel épisode cette citation est entendue pour la première fois ?
+      placeholder: "23 : La révolte"
+    validations:
+      required: false
+  - type: dropdown
+    id: actor
+    attributes:
+      label: Acteur
+      description: Quel est l'acteur en scène ?
+      options:
+        - lui
     validations:
       required: true
   - type: dropdown
-    id: browsers
+    id: character
     attributes:
-      label: What browsers are you seeing the problem on?
-      multiple: true
+      label: Personnage
+      description: Quel est le personnage en scène ?
       options:
-        - Firefox
-        - Chrome
-        - Safari
-        - Microsoft Edge
-  - type: textarea
-    id: logs
+        - lui
+    validations:
+      required: true
+  - type: input
+    id: author
     attributes:
-      label: Relevant log output
-      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
-      render: shell
-  - type: checkboxes
-    id: terms
+      label: Auteur
+      description: Qui est le génie derrière cette prose ?
+      placeholder: Alexandre Astier
+      value: Alexandre Astier
+    validations:
+      required: true
+  - type: input
+    id: series
     attributes:
-      label: Code of Conduct
-      description: By submitting this issue, you agree to follow our [Code of Conduct](https://example.com)
-      options:
-        - label: I agree to follow this project's Code of Conduct
-          required: true
+      label: Série
+      placeholder: Kaamelott
+      value: Kaamelott
+    validations:
+      required: true
