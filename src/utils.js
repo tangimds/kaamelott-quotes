@@ -25,9 +25,10 @@ const formatSlackResponse = ({ quote, character, season, episode }) => {
 const bold = (x) => `*${x}*`;
 const italic = (x) => `_${x}_`;
 
-const formatQuote = (q, f) => {
-  if (f === "slack") return formatSlackResponse(q);
-  return q;
+const formatResponse = ({ format, data }) => {
+  console.log({ format, data });
+  if (format === "slack") return formatSlackResponse(data.quote);
+  return { ok: true, data };
 };
 
 const filter = ({ filters, array }) =>
@@ -59,8 +60,8 @@ const _random = (array) =>
 
 module.exports = {
   formatSlackResponse,
-  formatQuote,
   filter,
   arabicToRoman,
+  formatResponse,
   _random,
 };

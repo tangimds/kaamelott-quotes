@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 // const morgan = require("morgan");
 // const helmet = require("helmet");
-const { formatQuote, filter, arabicToRoman, _random } = require("./utils");
+const { formatResponse, filter, arabicToRoman, _random } = require("./utils");
 
 require("dotenv").config();
 
@@ -22,9 +22,9 @@ app.get("/", async (req, res, next) => {
       filters: { season: arabicToRoman(season), character, quote },
     });
 
-    const q = _random(quotesScope);
-    const data = formatQuote(q, format);
-    return res.status(200).send({ ok: true, data, total: quotesScope.length });
+    const data = _random(quotesScope);
+    // const data = formatQuote(q, format);
+    return res.status(200).send(formatResponse({ format, data }));
   } catch (error) {
     console.log(error);
     return res.status(500).send({ ok: false, code: "SERVER_ERROR" });
