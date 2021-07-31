@@ -1,0 +1,28 @@
+name: Ajouter personnage
+description: Vous ne trouvez pas votre personnage préférée ? Ajoutez-le !
+labels: [new_character]
+assignees:
+  - tangimds
+body:
+  - type: input
+    id: contact
+    attributes:
+      label: Infos contact
+      description: Et si on a besoin de plus d'infos ?
+      placeholder: ex. culdechouette@kammelott.com
+    validations:
+      required: false
+  - type: textarea
+    id: character
+    attributes:
+      label: Le personnage
+      placeholder: Perceval de Galles
+    validations:
+      required: true
+  - type: textarea
+    id: actor
+    attributes:
+      label: L'acteur
+      placeholder: Franck Pitiot
+    validations:
+      required: true
