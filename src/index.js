@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 // const yup = require("yup");
 // const { nanoid } = require("nanoid");
+const { formatSlackResponse } = require("./utils");
 
 require("dotenv").config();
 
@@ -16,12 +17,19 @@ app.use(morgan("tiny"));
 app.use(cors());
 app.use(express.json());
 
-const _random = (array) => array[Math.floor(Math.random() * array.length)];
+const notFoundQuote = {
+  quote: "Hum, la, franchement.... Ca m'dit rien !",
+  character: "Alexandre Astier",
+};
+const _random = (array) =>
+  array[Math.floor(Math.random() * array.length)] || notFoundQuote;
 
 app.get("/", async (req, res, next) => {
   try {
     const { from } = req.query;
-    return res.status(200).send({ ok: true, data: _random(quotes) });
+    const quote = _random(quotes);
+    const data = from === "slack" ? formatSlackResponse(quote) : quote;
+    return res.status(200).send({ ok: true, data });
   } catch (error) {
     return res.status(500).send({ ok: false, code: "SERVER_ERROR" });
   }
@@ -31,7 +39,9 @@ app.get("/:id", async (req, res, next) => {
     const { from } = req.query;
     const { id } = req.params;
     const quotesScope = quotes.filter((quote) => quote.id?.toString() === id);
-    return res.status(200).send({ ok: true, data: _random(quotesScope) });
+    const quote = _random(quotesScope);
+    const data = from === "slack" ? formatSlackResponse(quote) : quote;
+    return res.status(200).send({ ok: true, data });
   } catch (error) {
     return res.status(500).send({ ok: false, code: "SERVER_ERROR" });
   }
@@ -43,7 +53,9 @@ app.get("/character/:char", async (req, res, next) => {
     const quotesScope = quotes.filter((quote) =>
       quote.character?.includes(char)
     );
-    return res.status(200).send({ ok: true, data: _random(quotesScope) });
+    const quote = _random(quotesScope);
+    const data = from === "slack" ? formatSlackResponse(quote) : quote;
+    return res.status(200).send({ ok: true, data });
   } catch (error) {
     return res.status(500).send({ ok: false, code: "SERVER_ERROR" });
   }
@@ -61,7 +73,9 @@ app.get("/season/:season", async (req, res, next) => {
     const quotesScope = quotes.filter(
       (quote) => quote.season === `Livre ${season}`
     );
-    return res.status(200).send({ ok: true, data: _random(quotesScope) });
+    const quote = _random(quotesScope);
+    const data = from === "slack" ? formatSlackResponse(quote) : quote;
+    return res.status(200).send({ ok: true, data });
   } catch (error) {
     console.log(error);
     return res.status(500).send({ ok: false, code: "SERVER_ERROR" });
@@ -72,7 +86,9 @@ app.get("/word/:w", async (req, res, next) => {
     const { from } = req.query;
     const { w } = req.params;
     const quotesScope = quotes.filter((quote) => quote.quote?.includes(w));
-    return res.status(200).send({ ok: true, data: _random(quotesScope) });
+    const quote = _random(quotesScope);
+    const data = from === "slack" ? formatSlackResponse(quote) : quote;
+    return res.status(200).send({ ok: true, data });
   } catch (error) {
     console.log(error);
     return res.status(500).send({ ok: false, code: "SERVER_ERROR" });
