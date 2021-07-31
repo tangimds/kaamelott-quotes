@@ -2,7 +2,12 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const helmet = require("helmet");
-const { formatResponse, filter, arabicToRoman, _random } = require("./utils");
+const {
+  formatSlackResponse,
+  filter,
+  arabicToRoman,
+  _random,
+} = require("./utils");
 
 require("dotenv").config();
 
@@ -14,37 +19,48 @@ app.use(morgan("tiny"));
 app.use(cors());
 app.use(express.json());
 
-app.get("/", async (req, res, next) => {
+app.get("/slack", async (req, res, next) => {
   try {
-    const { format, season, character, quote } = req.query;
+    const { season, character, quote } = req.query;
     const quotesScope = filter({
       array: quotes,
       filters: { season: arabicToRoman(season), character, quote },
     });
     const data = _random(quotesScope);
-    return res
-      .status(200)
-      .send(formatResponse({ format, data, total: quotesScope.length }));
+    return res.status(200).send(formatSlackResponse(data));
   } catch (error) {
     console.log(error);
     return res.status(500).send({ ok: false, code: "INTERNAL_SERVER_ERROR" });
   }
 });
-
-app.get("/:id", async (req, res, next) => {
+// app.get("/:id", async (req, res, next) => {
+//   try {
+//     const { format } = req.query;
+//     const { id } = req.params;
+//     const quotesScope = quotes.filter((quote) => quote.id?.toString() === id);
+//     const data = _random(quotesScope);
+//     return res
+//       .status(200)
+//       .send(formatResponse({ format, data, total: quotesScope.length }));
+//   } catch (error) {
+//     console.log(error);
+//     return res
+//       .status(500)
+//       .send({ ok: false, message: "INTERNAL_SERVER_ERROR" });
+//   }
+// });
+app.get("/", async (req, res, next) => {
   try {
-    const { format } = req.query;
-    const { id } = req.params;
-    const quotesScope = quotes.filter((quote) => quote.id?.toString() === id);
+    const { season, character, quote } = req.query;
+    const quotesScope = filter({
+      array: quotes,
+      filters: { season: arabicToRoman(season), character, quote },
+    });
     const data = _random(quotesScope);
-    return res
-      .status(200)
-      .send(formatResponse({ format, data, total: quotesScope.length }));
+    return res.status(200).send({ ok: true, data, total: quotesScope.length });
   } catch (error) {
     console.log(error);
-    return res
-      .status(500)
-      .send({ ok: false, message: "INTERNAL_SERVER_ERROR" });
+    return res.status(500).send({ ok: false, code: "INTERNAL_SERVER_ERROR" });
   }
 });
 
