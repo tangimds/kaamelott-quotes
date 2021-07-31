@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const helmet = require("helmet");
-const { formatSlackResponse } = require("./utils");
+const { formatQuote, filter, arabicToRoman, _random } = require("./utils");
 
 require("dotenv").config();
 
@@ -14,53 +14,54 @@ app.use(morgan("tiny"));
 app.use(cors());
 app.use(express.json());
 
-const total = quotes.length;
-const notFoundQuote = {
-  quote: "Hum, la, franchement.... Ca m'dit rien !",
-  character: "Alexandre Astier",
-};
-const _random = (array) =>
-  array[Math.floor(Math.random() * array.length)] || notFoundQuote;
-
 app.get("/", async (req, res, next) => {
   try {
-    const { from } = req.query;
-    const quote = _random(quotes);
-    const data = from === "slack" ? formatSlackResponse(quote) : quote;
-    return res.status(200).send({ ok: true, data, total });
+    const { format, season, character, quote } = req.query;
+    const quotesScope = filter({
+      array: quotes,
+      filters: { season: arabicToRoman(season), character, quote },
+    });
+
+    const q = _random(quotesScope);
+    const data = formatQuote(q, format);
+    return res.status(200).send({ ok: true, data, total: quotesScope.length });
   } catch (error) {
+    console.log(error);
     return res.status(500).send({ ok: false, code: "SERVER_ERROR" });
   }
 });
+
 app.get("/:id", async (req, res, next) => {
   try {
-    const { from } = req.query;
+    const { format } = req.query;
     const { id } = req.params;
     const quotesScope = quotes.filter((quote) => quote.id?.toString() === id);
     const quote = _random(quotesScope);
-    const data = from === "slack" ? formatSlackResponse(quote) : quote;
-    return res.status(200).send({ ok: true, data, total });
+    const data = formatQuote(quote, format);
+    return res.status(200).send({ ok: true, data, total: quotesScope.length });
   } catch (error) {
+    console.log(error);
     return res.status(500).send({ ok: false, code: "SERVER_ERROR" });
   }
 });
 app.get("/character/:char", async (req, res, next) => {
   try {
-    const { from } = req.query;
+    const { format } = req.query;
     const { char } = req.params;
     const quotesScope = quotes.filter((quote) =>
       quote.character?.includes(char)
     );
     const quote = _random(quotesScope);
-    const data = from === "slack" ? formatSlackResponse(quote) : quote;
-    return res.status(200).send({ ok: true, data, total });
+    const data = formatQuote(quote, format);
+    return res.status(200).send({ ok: true, data, total: quotesScope.length });
   } catch (error) {
+    console.log(error);
     return res.status(500).send({ ok: false, code: "SERVER_ERROR" });
   }
 });
 app.get("/season/:season", async (req, res, next) => {
   try {
-    const { from } = req.query;
+    const { format } = req.query;
     let { season } = req.params;
     if (season === "1") season = "I";
     if (season === "2") season = "II";
@@ -72,21 +73,21 @@ app.get("/season/:season", async (req, res, next) => {
       (quote) => quote.season === `Livre ${season}`
     );
     const quote = _random(quotesScope);
-    const data = from === "slack" ? formatSlackResponse(quote) : quote;
-    return res.status(200).send({ ok: true, data, total });
+    const data = formatQuote(quote, format);
+    return res.status(200).send({ ok: true, data, total: quotesScope.length });
   } catch (error) {
     console.log(error);
     return res.status(500).send({ ok: false, code: "SERVER_ERROR" });
   }
 });
-app.get("/word/:w", async (req, res, next) => {
+app.get("/quote/:w", async (req, res, next) => {
   try {
-    const { from } = req.query;
+    const { format } = req.query;
     const { w } = req.params;
     const quotesScope = quotes.filter((quote) => quote.quote?.includes(w));
     const quote = _random(quotesScope);
-    const data = from === "slack" ? formatSlackResponse(quote) : quote;
-    return res.status(200).send({ ok: true, data, total });
+    const data = formatQuote(quote, format);
+    return res.status(200).send({ ok: true, data, total: quotesScope.length });
   } catch (error) {
     console.log(error);
     return res.status(500).send({ ok: false, code: "SERVER_ERROR" });
