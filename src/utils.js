@@ -13,9 +13,9 @@ const sign = ({ character, season, episode }) => {
 const bold = (x) => `*${x}*`;
 const italic = (x) => `_${x}_`;
 
-const formatResponse = ({ format, data }) => {
+const formatResponse = ({ format, data, total }) => {
   if (format === "slack") return formatSlackResponse(data);
-  return { ok: true, data };
+  return { ok: true, data, total };
 };
 
 const filter = ({ filters, array }) =>
@@ -38,12 +38,27 @@ const arabicToRoman = (e) => {
   return e;
 };
 
-const notFoundQuote = {
-  quote: "Hum, la, franchement.... Ca m'dit rien !",
-  character: "Alexandre Astier",
-};
+const notFoundQuotes = [
+  {
+    quote: "Hum, la, franchement.... Ca m'dit rien !",
+    character: "Alexandre Astier (il a pas vraiment dit ça hein)",
+  },
+  {
+    quote: "J'ai po trouvé :(",
+    character: "Alexandre Astier (il a pas vraiment dit ça hein)",
+  },
+  {
+    quote: "T'as pas fait une faute d'ortho... de frappe ?",
+    character: "Alexandre Astier (il a pas vraiment dit ça hein)",
+  },
+  {
+    quote: "Ca doit être dans une autre série ça...",
+    character: "Alexandre Astier (il a pas vraiment dit ça hein)",
+  },
+];
 const _random = (array) =>
-  (array && array[Math.floor(Math.random() * array.length)]) || notFoundQuote;
+  (array && array[Math.floor(Math.random() * array.length)]) ||
+  notFoundQuotes[Math.floor(Math.random() * notFoundQuotes.length)];
 
 module.exports = {
   formatSlackResponse,

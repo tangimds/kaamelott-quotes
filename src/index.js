@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-// const morgan = require("morgan");
-// const helmet = require("helmet");
+const morgan = require("morgan");
+const helmet = require("helmet");
 const { formatResponse, filter, arabicToRoman, _random } = require("./utils");
 
 require("dotenv").config();
@@ -9,8 +9,8 @@ require("dotenv").config();
 const quotes = require("./quotes");
 const app = express();
 
-// app.use(helmet());
-// app.use(morgan("tiny"));
+app.use(helmet());
+app.use(morgan("tiny"));
 app.use(cors());
 app.use(express.json());
 
@@ -21,13 +21,13 @@ app.get("/", async (req, res, next) => {
       array: quotes,
       filters: { season: arabicToRoman(season), character, quote },
     });
-
     const data = _random(quotesScope);
-    // const data = formatQuote(q, format);
-    return res.status(200).send(formatResponse({ format, data }));
+    return res
+      .status(200)
+      .send(formatResponse({ format, data, total: quotesScope.length }));
   } catch (error) {
     console.log(error);
-    return res.status(500).send({ ok: false, code: "SERVER_ERROR" });
+    return res.status(500).send({ ok: false, code: "INTERNAL_SERVER_ERROR" });
   }
 });
 
@@ -36,66 +36,20 @@ app.get("/:id", async (req, res, next) => {
     const { format } = req.query;
     const { id } = req.params;
     const quotesScope = quotes.filter((quote) => quote.id?.toString() === id);
-    const quote = _random(quotesScope);
-    const data = formatQuote(quote, format);
-    return res.status(200).send({ ok: true, data, total: quotesScope.length });
+    const data = _random(quotesScope);
+    return res
+      .status(200)
+      .send(formatResponse({ format, data, total: quotesScope.length }));
   } catch (error) {
     console.log(error);
-    return res.status(500).send({ ok: false, code: "SERVER_ERROR" });
-  }
-});
-app.get("/character/:char", async (req, res, next) => {
-  try {
-    const { format } = req.query;
-    const { char } = req.params;
-    const quotesScope = quotes.filter((quote) =>
-      quote.character?.includes(char)
-    );
-    const quote = _random(quotesScope);
-    const data = formatQuote(quote, format);
-    return res.status(200).send({ ok: true, data, total: quotesScope.length });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).send({ ok: false, code: "SERVER_ERROR" });
-  }
-});
-app.get("/season/:season", async (req, res, next) => {
-  try {
-    const { format } = req.query;
-    let { season } = req.params;
-    if (season === "1") season = "I";
-    if (season === "2") season = "II";
-    if (season === "3") season = "III";
-    if (season === "4") season = "IV";
-    if (season === "5") season = "V";
-    if (season === "6") season = "VI";
-    const quotesScope = quotes.filter(
-      (quote) => quote.season === `Livre ${season}`
-    );
-    const quote = _random(quotesScope);
-    const data = formatQuote(quote, format);
-    return res.status(200).send({ ok: true, data, total: quotesScope.length });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).send({ ok: false, code: "SERVER_ERROR" });
-  }
-});
-app.get("/quote/:w", async (req, res, next) => {
-  try {
-    const { format } = req.query;
-    const { w } = req.params;
-    const quotesScope = quotes.filter((quote) => quote.quote?.includes(w));
-    const quote = _random(quotesScope);
-    const data = formatQuote(quote, format);
-    return res.status(200).send({ ok: true, data, total: quotesScope.length });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).send({ ok: false, code: "SERVER_ERROR" });
+    return res
+      .status(500)
+      .send({ ok: false, message: "INTERNAL_SERVER_ERROR" });
   }
 });
 
 app.use((req, res, next) => {
-  res.status(404).send({ ok: false, code: "NOT_FOUND" });
+  res.status(404).send({ ok: false, message: "NOT_FOUND" });
 });
 
 app.use((error, req, res, next) => {
