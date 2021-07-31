@@ -8,6 +8,7 @@
     "build": "babel src --out-dir lib --copy-files --extensions '.ts,.js'",
     "start": "node index.js"
   },
+  "heroku-run-build-script": true,
   "keywords": [],
   "author": "Tangi Mendes <tangimds@gmail.com> (https://tangimds.com)",
   "license": "MIT",
