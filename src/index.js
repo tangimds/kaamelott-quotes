@@ -1,10 +1,7 @@
-// const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const helmet = require("helmet");
-// const yup = require("yup");
-// const { nanoid } = require("nanoid");
 const { formatSlackResponse } = require("./utils");
 
 require("dotenv").config();
@@ -114,5 +111,5 @@ app.use((error, req, res, next) => {
 
 const port = process.env.PORT || 1997;
 app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}`);
+  console.log(`Listening on port ${port}`);
 });
