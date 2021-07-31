@@ -26,8 +26,9 @@ const filterByProps = ({ filters, array }) =>
     return match;
   });
 
-const filter = ({ filter, array }) =>
-  array.filter((e) => {
+const filter = ({ filter, array }) => {
+  if (!filter) return array;
+  return array.filter((e) => {
     let match = false;
     Object.keys(e).forEach((prop) => {
       if (!e[prop] || typeof e[prop] !== "string") return;
@@ -35,8 +36,9 @@ const filter = ({ filter, array }) =>
     });
     return match;
   });
+};
 
-const _includes = (a, b) => a.toLowerCase().includes(b.toLowerCase());
+const _includes = (a, b) => a?.toLowerCase().includes(b?.toLowerCase());
 
 const arabicToRoman = (e) => {
   if (e === "1") return "I";

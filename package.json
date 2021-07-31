@@ -4,13 +4,19 @@
   "description": "quotes kaamelott",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/index.js",
-    "dev": "nodemon ./src/index.js"
+    "dev": "DEV_ENV=true nodemon --ext '.js,.jsx' --ignore 'dist' index.js",
+    "build": "babel src --out-dir lib --copy-files --extensions '.ts,.js'",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "Tangi Mendes <tangimds@gmail.com> (https://tangimds.com)",
   "license": "MIT",
   "dependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.14.8",
+    "@babel/preset-env": "^7.14.8",
+    "@babel/preset-react": "^7.14.5",
+    "@babel/register": "^7.14.5",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -18,6 +24,9 @@
     "morgan": "^1.10.0",
     "nanoid": "^3.1.9",
     "nodemon": "^2.0.4",
+    "parcel-bundler": "^1.12.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "yup": "^0.29.1"
   }
 }
