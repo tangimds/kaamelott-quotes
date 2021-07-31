@@ -12,14 +12,14 @@ body:
       placeholder: ex. culdechouette@kammelott.com
     validations:
       required: false
-  - type: textarea
+  - type: input
     id: character
     attributes:
       label: Le personnage
       placeholder: Perceval de Galles
     validations:
       required: true
-  - type: textarea
+  - type: input
     id: actor
     attributes:
       label: L'acteur
