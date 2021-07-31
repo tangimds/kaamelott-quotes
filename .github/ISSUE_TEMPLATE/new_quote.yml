@@ -1,6 +1,5 @@
 name: Ajouter une citation
 description: Vous ne trouvez pas votre citation préférée ? Ajoutez-la !
-title: "[Quote]: "
 labels: [new_quote]
 assignees:
   - tangimds
@@ -49,7 +48,64 @@ body:
       label: Acteur
       description: Quel est l'acteur en scène ?
       options:
-        - lui
+        - Alexandre Astier
+        - Lionnel Astier
+        - Franck Pitiot
+        - Jean-Christophe Hembert
+        - Anne Girouard
+        - Thomas Cousseau
+        - Nicolas Gabion
+        - Jean-Robert Lombard
+        - Joëlle Sevilla
+        - Jacques Chambon
+        - Audrey Fleurot
+        - Simon Astier
+        - Stéphane Margot
+        - Brice Fournier
+        - Aurélien Portehaut
+        - Caroline Ferrus
+        - Alain Chapuis
+        - Alexis Hénon
+        - Tony Saba
+        - Loïc Varraut
+        - Caroline Pascal
+        - Christian Bujeau
+        - Serge Papagalli
+        - François Rollin
+        - Bruno Fontaine
+        - Vanessa Guedj
+        - Josée Drevon
+        - Gilles Graveleau
+        - Antoine de Caunes
+        - Carlo Brandt
+        - Valérie Benguigui
+        - Thibault Roux
+        - Etienne Fague
+        - Pierre Mondy
+        - Emmanuel Meirieu
+        - Tcheky Karyo
+        - Valeria Cavalli
+        - Pascal Vincent
+        - Georges Beller
+        - Bruno Salomone
+        - Guillaume Briat
+        - Manu Payet
+        - Pascal Demolon
+        - Axelle Laffont
+        - Patrick Chesnais
+        - Christian Clavier
+        - Loránt Deutsch
+        - Philippe Nahon
+        - Émilie Dequenne
+        - Alain Chabat
+        - François Levantal
+        - Claire Nadeau
+        - Yvan le Bolloc'h
+        - Lan Truong
+        - Anouk Grinberg
+        - Alexandra Saadoun et Magali Saadoun
+        - François Morel
+        - Anne Benoît
     validations:
       required: true
   - type: dropdown
@@ -58,7 +114,64 @@ body:
       label: Personnage
       description: Quel est le personnage en scène ?
       options:
-        - lui
+        - Arthur
+        - Léodagan de Carmélide
+        - Perceval de Galles
+        - Karadoc de Vannes
+        - Guenièvre
+        - Lancelot du Lac
+        - Bohort de Gaunes
+        - Père Blaise
+        - Séli
+        - Merlin
+        - La Dame du Lac
+        - Yvain, chevalier au Lion
+        - Calogrenant
+        - Kadoc
+        - Gauvain, chevalier au Pancréas
+        - Mevanwi
+        - Le tavernier
+        - Galessin
+        - Hervé de Rinel
+        - Venec
+        - Demetra
+        - Maître d’armes
+        - Guethenoc
+        - Loth
+        - Élias de Kelliwic'h
+        - Angharad
+        - Ygerne de Tintagel
+        - Roparzh
+        - Dagonet
+        - Méléagant
+        - Prisca
+        - Grüdü
+        - Lionel de Gaunes
+        - César
+        - Appius Manilius
+        - Manius Macrinus Firmus
+        - Aconia Minor
+        - Urgan
+        - Jacca
+        - Caius Camillus
+        - Le roi Burgonde
+        - Verinus
+        - Spurius Cordius Frontinius
+        - Séfriane d'Aquitaine
+        - Lucius Silius Sallustius
+        - Jurisconsulte
+        - l'interprète
+        - Goustan de Carmélide
+        - Edern
+        - Le Duc d'Aquitaine
+        - Publius Servius Capito
+        - Cryda de Tintagel
+        - Breccan
+        - Attila
+        - Anna de Tintagel
+        - Les jumelles du pêcheur
+        - Belt
+        - Drusilla
     validations:
       required: true
   - type: input
