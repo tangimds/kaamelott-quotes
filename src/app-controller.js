@@ -7,6 +7,6 @@ export default class AppController {
   }
 
   async index() {
-    return layout("Hello world");
+    return layout();
   }
 }
