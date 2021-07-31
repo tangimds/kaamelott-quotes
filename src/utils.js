@@ -1,33 +1,20 @@
 const formatSlackResponse = ({ quote, character, season, episode }) => {
-  return {
-    blocks: [
-      {
-        type: "section",
-        text: {
-          type: "mrkdwn",
-          text: quote,
-        },
-      },
-      {
-        type: "section",
-        text: {
-          type: "mrkdwn",
-          text:
-            (character && bold(italic(character))) +
-            (season ? ` - ${italic(season)}` : "") +
-            (episode ? ` - ${italic(episode)}` : ""),
-        },
-      },
-    ],
-  };
+  return `${quote}\n\n${sign({ character, season, episode })}`;
+};
+
+const sign = ({ character, season, episode }) => {
+  let r = "";
+  character ? (r += bold(italic(character))) : null;
+  season ? (r += " - " + italic(season)) : null;
+  episode ? (r += " - " + italic(episode)) : null;
+  return r;
 };
 
 const bold = (x) => `*${x}*`;
 const italic = (x) => `_${x}_`;
 
 const formatResponse = ({ format, data }) => {
-  console.log({ format, data });
-  if (format === "slack") return formatSlackResponse(data.quote);
+  if (format === "slack") return formatSlackResponse(data);
   return { ok: true, data };
 };
 
