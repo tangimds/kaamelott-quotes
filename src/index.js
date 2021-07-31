@@ -17,6 +17,7 @@ app.use(morgan("tiny"));
 app.use(cors());
 app.use(express.json());
 
+const total = quotes.length;
 const notFoundQuote = {
   quote: "Hum, la, franchement.... Ca m'dit rien !",
   character: "Alexandre Astier",
@@ -29,7 +30,7 @@ app.get("/", async (req, res, next) => {
     const { from } = req.query;
     const quote = _random(quotes);
     const data = from === "slack" ? formatSlackResponse(quote) : quote;
-    return res.status(200).send({ ok: true, data });
+    return res.status(200).send({ ok: true, data, total });
   } catch (error) {
     return res.status(500).send({ ok: false, code: "SERVER_ERROR" });
   }
@@ -41,7 +42,7 @@ app.get("/:id", async (req, res, next) => {
     const quotesScope = quotes.filter((quote) => quote.id?.toString() === id);
     const quote = _random(quotesScope);
     const data = from === "slack" ? formatSlackResponse(quote) : quote;
-    return res.status(200).send({ ok: true, data });
+    return res.status(200).send({ ok: true, data, total });
   } catch (error) {
     return res.status(500).send({ ok: false, code: "SERVER_ERROR" });
   }
@@ -55,7 +56,7 @@ app.get("/character/:char", async (req, res, next) => {
     );
     const quote = _random(quotesScope);
     const data = from === "slack" ? formatSlackResponse(quote) : quote;
-    return res.status(200).send({ ok: true, data });
+    return res.status(200).send({ ok: true, data, total });
   } catch (error) {
     return res.status(500).send({ ok: false, code: "SERVER_ERROR" });
   }
@@ -75,7 +76,7 @@ app.get("/season/:season", async (req, res, next) => {
     );
     const quote = _random(quotesScope);
     const data = from === "slack" ? formatSlackResponse(quote) : quote;
-    return res.status(200).send({ ok: true, data });
+    return res.status(200).send({ ok: true, data, total });
   } catch (error) {
     console.log(error);
     return res.status(500).send({ ok: false, code: "SERVER_ERROR" });
@@ -88,7 +89,7 @@ app.get("/word/:w", async (req, res, next) => {
     const quotesScope = quotes.filter((quote) => quote.quote?.includes(w));
     const quote = _random(quotesScope);
     const data = from === "slack" ? formatSlackResponse(quote) : quote;
-    return res.status(200).send({ ok: true, data });
+    return res.status(200).send({ ok: true, data, total });
   } catch (error) {
     console.log(error);
     return res.status(500).send({ ok: false, code: "SERVER_ERROR" });
