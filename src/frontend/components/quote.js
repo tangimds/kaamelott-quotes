@@ -47,7 +47,6 @@ const ContainerQuote = styled.div`
 `;
 
 const Quote = styled.div`
-  font-family: ;
   display: flex;
   font-size: 1.5rem;
   div {
