@@ -1,10 +1,9 @@
 node_modules
 .env
 .DS_Store
-/bin
-/bin*
+dist
+bin
 todo.md
 .cache
-/lib
-/lib*
+lib
 .vscode

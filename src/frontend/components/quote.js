@@ -9,16 +9,18 @@ export default () => {
 
   return (
     <Container>
-      <Quote>
-        <span>❝ </span>
-        {value.quote}
-      </Quote>
-      <Sign>
-        <span className="character">{value.character}</span>
-        <br />
-        <span className="season">{value.season}</span> -{" "}
-        <span className="episode">{value.episode}</span>
-      </Sign>
+      <ContainerQuote>
+        <Quote>
+          <div className="icon">❝</div>
+          {value.quote}
+        </Quote>
+        <Sign>
+          <span className="character">{value.character}</span>
+          <br />
+          <span className="season">{value.season}</span> -{" "}
+          <span className="episode">{value.episode}</span>
+        </Sign>
+      </ContainerQuote>
       <Button onClick={handleClick}>Une autre !</Button>
     </Container>
   );
@@ -38,15 +40,29 @@ const Container = styled.div`
     padding: 2rem 3.3rem 2rem 1rem; // typeform aera
   }
 `;
+const ContainerQuote = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`;
 
-const Quote = styled.h1`
+const Quote = styled.div`
+  display: flex;
   font-size: 1.5rem;
-  span {
+  div {
     font-size: 2rem;
+    margin-right: 0.5rem;
+  }
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    div {
+      font-size: 1.3rem;
+      margin-right: 0.3rem;
+    }
   }
 `;
 
-const Sign = styled.h2`
+const Sign = styled.div`
   color: #eee;
   margin: 1rem 0;
   font-size: 0.8rem;
@@ -57,18 +73,23 @@ const Sign = styled.h2`
   .season.episode {
     color: #ccc;
   }
+  @media (max-width: 768px) {
+    font-size: 0.65rem;
+  }
 `;
 
 const Button = styled.button`
-  background-color: #eee;
-  border: 1px solid #ddd;
+  background-color: transparent;
+  border: 1px solid #eee;
+  color: #eee;
   border-radius: 999999px;
-  color: #333;
   padding: 0.5rem 2rem;
   font-size: 1rem;
-  opacity: 0.8;
+  outline: none;
+  cursor: pointer;
   :hover {
-    opacity: 1;
-    cursor: pointer;
+    /* box-shadow: rgba(255, 255, 255, 0.4) 0px 2px 12px 0px; */
+    background-color: #eee;
+    color: #333;
   }
 `;
