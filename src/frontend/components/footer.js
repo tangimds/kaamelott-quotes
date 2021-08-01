@@ -4,9 +4,7 @@ import styled from "styled-components";
 export default () => {
   return (
     <Footer>
-      <div>
-        <Link title="© tangimds - 2021" to="https://tangimds.com" />
-      </div>
+      <Copyright>© tangimds - 2021</Copyright>
       <div>
         <Link
           title="code source"
@@ -32,6 +30,10 @@ const Footer = styled.div`
   color: #fff;
   justify-content: space-between;
   padding: 1rem;
+`;
+const Copyright = styled.div`
+  font-size: 0.8rem;
+  color: #fff;
 `;
 const LinkStyle = styled.a`
   font-size: 0.8rem;
