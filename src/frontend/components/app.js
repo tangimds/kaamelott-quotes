@@ -37,7 +37,7 @@ const ContainerStyle = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: url("https://img-4.linternaute.com/xfWx8NGDYouJ5lUx37YwPzHzzgw=/820x546/smart/6e4bae02d0184a37b9064a84434cc4d5/ccmcms-linternaute/26399429.jpg");
+  background-image: url("/test.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;

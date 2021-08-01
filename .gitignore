@@ -1,9 +1,10 @@
 node_modules
 .env
 .DS_Store
-dist
 bin
 todo.md
 .cache
 lib
 .vscode
+dist/*.js
+dist/*.js.map
