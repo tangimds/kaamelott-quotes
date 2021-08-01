@@ -36616,12 +36616,20 @@ var _random = function _random(array) {
   return array && array[Math.floor(Math.random() * array.length)] || notFoundQuotes[Math.floor(Math.random() * notFoundQuotes.length)];
 };
 
+var _invert = function _invert(obj) {
+  return Object.keys(obj).reduce(function (res, key) {
+    res[obj[key]] = key;
+    return res;
+  }, {});
+};
+
 module.exports = {
   formatSlackResponse: formatSlackResponse,
   filter: filter,
   filterByProps: filterByProps,
   arabicToRoman: arabicToRoman,
-  _random: _random
+  _random: _random,
+  _invert: _invert
 };
 },{}],"../../node_modules/react-is/cjs/react-is.development.js":[function(require,module,exports) {
 /** @license React v17.0.2
@@ -39302,7 +39310,7 @@ var Container = function Container(_ref) {
 // const getBackground = () => _random(backgroundList);
 
 
-var ContainerStyle = _styledComponents.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  position: relative;\n  height: 100%;\n  min-height: 100vh;\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  background-image: url(\"https://img-4.linternaute.com/xfWx8NGDYouJ5lUx37YwPzHzzgw=/820x546/smart/6e4bae02d0184a37b9064a84434cc4d5/ccmcms-linternaute/26399429.jpg\");\n  background-size: cover;\n  z-index: 0;\n\n  ::before {\n    z-index: -1;\n    content: \"\";\n    position: absolute;\n    top: 0px;\n    right: 0px;\n    bottom: 0px;\n    left: 0px;\n    background-color: rgba(0, 0, 0, 0.75);\n  }\n"])));
+var ContainerStyle = _styledComponents.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  position: relative;\n  height: 100%;\n  min-height: 100vh;\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  background-image: url(\"https://img-4.linternaute.com/xfWx8NGDYouJ5lUx37YwPzHzzgw=/820x546/smart/6e4bae02d0184a37b9064a84434cc4d5/ccmcms-linternaute/26399429.jpg\");\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-position: center center;\n  z-index: 0;\n\n  ::before {\n    z-index: -1;\n    content: \"\";\n    position: absolute;\n    top: 0px;\n    right: 0px;\n    bottom: 0px;\n    left: 0px;\n    background-color: rgba(0, 0, 0, 0.75);\n  }\n"])));
 
 var Body = _styledComponents.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  flex: 1;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n"])));
 },{"react":"../../node_modules/react/index.js","./quote":"components/quote.js","./footer":"components/footer.js","styled-components":"../../node_modules/styled-components/dist/styled-components.browser.esm.js","../../utils":"../utils.js"}],"entry.jsx":[function(require,module,exports) {
@@ -39349,7 +39357,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54498" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49931" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

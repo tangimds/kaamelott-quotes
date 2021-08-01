@@ -7,3 +7,4 @@ todo.md
 .cache
 /lib
 /lib*
+.vscode

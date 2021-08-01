@@ -72,10 +72,17 @@ const _random = (array) =>
   (array && array[Math.floor(Math.random() * array.length)]) ||
   notFoundQuotes[Math.floor(Math.random() * notFoundQuotes.length)];
 
+const _invert = (obj) =>
+  Object.keys(obj).reduce((res, key) => {
+    res[obj[key]] = key;
+    return res;
+  }, {});
+
 module.exports = {
   formatSlackResponse,
   filter,
   filterByProps,
   arabicToRoman,
   _random,
+  _invert,
 };
