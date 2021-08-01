@@ -78,6 +78,12 @@ const _invert = (obj) =>
     return res;
   }, {});
 
+const BACKGROUNDS_ARRAY_SIZE = 8;
+const getBackground = () =>
+  `/assets/backgrounds/${Math.floor(
+    Math.random() * BACKGROUNDS_ARRAY_SIZE
+  )}.jpg`;
+
 module.exports = {
   formatSlackResponse,
   filter,
@@ -85,4 +91,5 @@ module.exports = {
   arabicToRoman,
   _random,
   _invert,
+  getBackground,
 };

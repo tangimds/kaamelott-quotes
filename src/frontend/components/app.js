@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Quote from "./quote";
 import Footer from "./footer";
 import styled from "styled-components";
-import { _random } from "../../utils";
+import { _random, getBackground } from "../../utils";
 
 export default () => {
+  const [backgroundUrl, setBackgroundUrl] = useState();
+  useEffect(() => {
+    setBackgroundUrl(getBackground());
+  }, []);
+
+  if (!backgroundUrl) return <div>Chargement...</div>;
   return (
-    <Container>
+    <Container backgroundUrl={backgroundUrl}>
       <Body>
         <Quote />
       </Body>
@@ -15,18 +21,10 @@ export default () => {
   );
 };
 
-const Container = ({ children }) => <ContainerStyle>{children}</ContainerStyle>;
-
-// const backgroundList = [
-//   "https://img-4.linternaute.com/xfWx8NGDYouJ5lUx37YwPzHzzgw=/820x546/smart/6e4bae02d0184a37b9064a84434cc4d5/ccmcms-linternaute/26399429.jpg",
-//   "https://prmeng.rosselcdn.net/sites/default/files/dpistyles_v2/ena_16_9_extra_big/2021/06/10/node_201557/38541322/public/2021/06/10/B9727326127Z.1_20210610185444_000%2BGB2IA4MQK.1-0.jpg?itok=RKQ5r-1n1623344244",
-//   "https://lvdneng.rosselcdn.net/sites/default/files/dpistyles_v2/ena_16_9_extra_big/2020/10/19/node_881237/49332990/public/2020/10/19/B9724982672Z.1_20201019162840_000%2BG0DGTFOP3.1-0.jpg?itok=sBHOaOta1603140204",
-//   "http://www.slate.fr/sites/default/files/styles/1060x523/public/kamelott.jpeg",
-//   "https://www.sudinfo.be/sites/default/files/dpistyles_v2/ena_sp_16_9_illustration_principale/2020/11/19/node_283066/45710781/public/2020/11/19/B9725286908Z.1_20201119101404_000+GCBH3AC91.1-0.jpg?itok=j3zTY0PC1605780726",
-//   "https://img.20mn.fr/KWRmPWk1SROHQKmhzUWWnw/768x492_alexandre-astier-kaamelott.jpg",
-//   "https://labibleurbaine.com/wp-content/uploads/2020/05/2577964.jpg-r_640_360-f_jpg-q_x-xxyxx-610x350.jpg",
-// ];
-// const getBackground = () => _random(backgroundList);
+const Container = ({
+  children,
+  backgroundUrl = "/assets/backgrounds/0.jpg",
+}) => <ContainerStyle backgroundUrl={backgroundUrl}>{children}</ContainerStyle>;
 
 const ContainerStyle = styled.div`
   position: relative;
@@ -37,7 +35,7 @@ const ContainerStyle = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: url("/test.jpg");
+  background-image: url(${({ backgroundUrl }) => backgroundUrl});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;

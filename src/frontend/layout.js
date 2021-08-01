@@ -15,8 +15,7 @@ export default () => {
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>C'est pas faux !</title>
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-      <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/fr/2/2a/Kaamelott_Premier_Volet_Logo.png" />
-      <!-- <link rel="icon" type="image/png" href="http://localhost:8080/assets/Kaamelott_Logo_black.png" /> -->
+      <link rel="icon" type="image/png" href="/favicon.png" />
       <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     </head>
     <body>
