@@ -47,6 +47,7 @@ const ContainerQuote = styled.div`
 `;
 
 const Quote = styled.div`
+  font-family: ;
   display: flex;
   font-size: 1.5rem;
   div {
@@ -79,6 +80,7 @@ const Sign = styled.div`
 `;
 
 const Button = styled.button`
+  -webkit-tap-highlight-color: transparent;
   background-color: transparent;
   border: 1px solid #eee;
   color: #eee;
