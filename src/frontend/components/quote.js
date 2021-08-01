@@ -37,7 +37,7 @@ const Container = styled.div`
   color: #fff;
   @media (max-width: 768px) {
     max-width: 100%;
-    padding: 2rem 3.3rem 2rem 1rem; // typeform aera
+    padding: 2rem 4rem 2rem 1rem; // typeform aera
   }
 `;
 const ContainerQuote = styled.div`
