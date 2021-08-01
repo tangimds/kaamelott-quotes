@@ -72,7 +72,7 @@ const _random = (array) =>
   (array && array[Math.floor(Math.random() * array.length)]) ||
   notFoundQuotes[Math.floor(Math.random() * notFoundQuotes.length)];
 
-const _invert = (obj) =>
+const invertKeyValueObject = (obj) =>
   Object.keys(obj).reduce((res, key) => {
     res[obj[key]] = key;
     return res;
@@ -90,6 +90,6 @@ module.exports = {
   filterByProps,
   arabicToRoman,
   _random,
-  _invert,
+  invertKeyValueObject,
   getBackground,
 };
