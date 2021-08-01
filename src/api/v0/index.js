@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const quotes = require("../quotes");
+const quotes = require("../../quotes");
 const {
   formatSlackResponse,
   filter,
   filterByProps,
   arabicToRoman,
   _random,
-} = require("../utils");
+} = require("../../utils");
 
 router.get("/slack", async (req, res, next) => {
   try {
