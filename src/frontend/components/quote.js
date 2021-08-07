@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import quotes from "../../quotes";
-import { _random } from "../../utils";
+import { _random, useQuery, getQuote, queryToObject } from "../../utils";
 import styled from "styled-components";
 
 export default () => {
-  const [value, setValue] = useState(_random(quotes));
-  const handleClick = () => setValue(_random(quotes));
-
+  const query = useQuery();
+  const get = () => {
+    const { data } = getQuote({ array: quotes, query: queryToObject(query) });
+    return data;
+  };
+  const [value, setValue] = useState(get());
+  const handleClick = () => setValue(get());
   return (
     <Container>
       <ContainerQuote>

@@ -3,6 +3,7 @@ import Quote from "./quote";
 import Footer from "./footer";
 import styled from "styled-components";
 import { _random, getBackground } from "../../utils";
+import { BrowserRouter as Router } from "react-router-dom";
 
 export default () => {
   const [backgroundUrl, setBackgroundUrl] = useState();
@@ -12,12 +13,14 @@ export default () => {
 
   if (!backgroundUrl) return <div>Chargement...</div>;
   return (
-    <Container backgroundUrl={backgroundUrl}>
-      <Body>
-        <Quote />
-      </Body>
-      <Footer />
-    </Container>
+    <Router>
+      <Container backgroundUrl={backgroundUrl}>
+        <Body>
+          <Quote />
+        </Body>
+        <Footer />
+      </Container>
+    </Router>
   );
 };
 

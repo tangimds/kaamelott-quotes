@@ -1,3 +1,5 @@
+import { useLocation } from "react-router-dom";
+
 const formatSlackResponse = ({ quote, character, season, episode }) => {
   return {
     response_type: "in_channel",
@@ -16,12 +18,29 @@ const sign = ({ character, season, episode }) => {
 const bold = (x) => `*${x}*`;
 const italic = (x) => `_${x}_`;
 
+const filtersMaps = (e) => {
+  switch (e) {
+    case "text":
+      return "quote";
+    case "livre":
+      return "season";
+    case "citation":
+      return "quote";
+    case "personnage":
+      return "character";
+    case "perso":
+      return "character";
+    default:
+      return e;
+  }
+};
+
 const filterByProps = ({ filters, array }) =>
   array.filter((e) => {
     let match = true;
     Object.keys(filters).forEach((f) => {
       if (!filters[f]) return;
-      return (match = match && _includes(e[f], filters[f]));
+      return (match = match && _includes(e[filtersMaps(f)], filters[f]));
     });
     return match;
   });
@@ -84,6 +103,24 @@ const getBackground = () =>
     Math.random() * BACKGROUNDS_ARRAY_SIZE
   )}.jpg`;
 
+const useQuery = () => {
+  return new URLSearchParams(useLocation().search);
+};
+
+const getQuote = ({ array, query }) => {
+  const quotesScope = filterByProps({
+    array,
+    filters: query,
+  });
+  return { data: _random(quotesScope), total: quotesScope.length };
+};
+
+const queryToObject = (q) => {
+  let res = {};
+  for (let x of q) res[x[0]] = x[1];
+  return res;
+};
+
 module.exports = {
   formatSlackResponse,
   filter,
@@ -92,4 +129,7 @@ module.exports = {
   _random,
   invertKeyValueObject,
   getBackground,
+  useQuery,
+  queryToObject,
+  getQuote,
 };

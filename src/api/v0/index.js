@@ -7,6 +7,7 @@ const {
   filterByProps,
   arabicToRoman,
   _random,
+  getQuote,
 } = require("../../utils");
 
 router.get("/slack", async (req, res, next) => {
@@ -26,13 +27,8 @@ router.get("/slack", async (req, res, next) => {
 
 router.get("/", async (req, res, next) => {
   try {
-    const { season, character, quote } = req.query;
-    const quotesScope = filterByProps({
-      array: quotes,
-      filters: { season: arabicToRoman(season), character, quote },
-    });
-    const data = _random(quotesScope);
-    return res.status(200).send({ ok: true, data, total: quotesScope.length });
+    const { data, total } = getQuote({ array: quotes, query: req.query });
+    return res.status(200).send({ ok: true, data, total });
   } catch (error) {
     console.log(error);
     return res.status(500).send({ ok: false, code: "INTERNAL_SERVER_ERROR" });
