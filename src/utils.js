@@ -35,8 +35,10 @@ const filtersMaps = (e) => {
   }
 };
 
-const filterByProps = ({ filters, array }) =>
-  array.filter((e) => {
+const filterByProps = ({ filters, array }) => {
+  if (filters.id) return array.filter((e) => e.id == filters.id);
+  delete filters.id;
+  return array.filter((e) => {
     let match = true;
     Object.keys(filters).forEach((f) => {
       if (!filters[f]) return;
@@ -44,6 +46,7 @@ const filterByProps = ({ filters, array }) =>
     });
     return match;
   });
+};
 
 const filter = ({ filter, array }) => {
   if (!filter) return array;

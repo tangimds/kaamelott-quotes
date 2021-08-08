@@ -5,12 +5,21 @@ import styled from "styled-components";
 
 export default () => {
   const query = useQuery();
+  const [copied, setCopied] = useState();
   const get = () => {
     const { data } = getQuote({ array: quotes, query: queryToObject(query) });
     return data;
   };
   const [value, setValue] = useState(get());
-  const handleClick = () => setValue(get());
+  const handleClick = () => {
+    setValue(get());
+    setCopied(false);
+  };
+  const handleShare = () => {
+    const link = window.location.origin + "?id=" + value.id;
+    navigator.clipboard.writeText(link);
+    setCopied(true);
+  };
   return (
     <Container>
       <ContainerQuote>
@@ -26,6 +35,8 @@ export default () => {
         </Sign>
       </ContainerQuote>
       <Button onClick={handleClick}>Une autre !</Button>
+      <Button onClick={handleShare}>Partager</Button>
+      {copied ? <span className="share">lien copié !</span> : null}
     </Container>
   );
 };
@@ -39,6 +50,10 @@ const Container = styled.div`
   max-width: 50%;
   padding: 2rem 1rem;
   color: #fff;
+  .share {
+    font-size: 0.8rem;
+    font-style: italic;
+  }
   @media (max-width: 768px) {
     max-width: 100%;
     padding: 2rem 4rem 2rem 1rem; // typeform aera
@@ -92,6 +107,7 @@ const Button = styled.button`
   font-size: 1rem;
   outline: none;
   cursor: pointer;
+  margin: 0.3rem;
   :hover {
     /* box-shadow: rgba(255, 255, 255, 0.4) 0px 2px 12px 0px; */
     background-color: #eee;
