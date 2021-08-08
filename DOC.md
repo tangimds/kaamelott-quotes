@@ -50,8 +50,9 @@ Certains champs peuvent être filtrés avec des synonymes :
 
 ### Format slack
 Cette api peut être intégrée en tant qu'application slack ([voir documentation](https://api.slack.com/interactivity/slash-commands)).  
-![slack](/assets/slack_response.png). 
-Le route a appelée pour que la réponse soit correctement traitée par slack est la suivante : 
+<img src="/assets/slack-response.png" alt="slack" height="120"/>
+
+Le route a configurer dans l'application intégrée pour que la réponse soit correctement traitée par slack est la suivante : 
 
 ```
 GET /slack
