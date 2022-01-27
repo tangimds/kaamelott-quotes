@@ -17,9 +17,12 @@ export default () => {
 "╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝╚══════╝░╚════╝░░░░╚═╝░░░░░░╚═╝░░░\n", "color: #999; font-size: .6rem;");
     console.log("%cParamètres url :","font-family:monospace; font-size: 14px;");
     console.log("\n");
-    console.log("%c text : citation contenant ce texte","font-family:monospace; font-size: 11px");
-    console.log("%c livre : citation venant du livre","font-family:monospace; font-size: 11px");
-    console.log("%c perso : citation prononcé par ce personnage","font-family:monospace; font-size: 11px");
+    console.log("%c ?text=x : citation contenant le texte `x`","font-family:monospace; font-size: 11px");
+    console.log("%c ?livre=x : citation venant du livre `x`","font-family:monospace; font-size: 11px");
+    console.log("%c ?perso=x : citation prononcé par le personnage `x`","font-family:monospace; font-size: 11px");
+    console.log("%c ?play=auto : les citations défilent toutes les 1 seconde par défaut","font-family:monospace; font-size: 11px");
+    console.log("%c ?t=x : période de défilement (toutes les `x` seconde)","font-family:monospace; font-size: 11px");
+
   }, []);
 
   if (!backgroundUrl) return <div>Chargement...</div>;
