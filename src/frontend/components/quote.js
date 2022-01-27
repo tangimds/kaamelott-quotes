@@ -38,22 +38,24 @@ export default () => {
 
   return (
     <Container>
-      <ContainerQuote>
-        <Quote>
-          <div className="icon">❝</div>
-          {value.quote}
-        </Quote>
-        <Sign>
-          <span className="character">{value.character}</span>
-          <br />
-          <span className="season">{value.season}</span> -{" "}
-          <span className="episode">{value.episode}</span>
-        </Sign>
-      </ContainerQuote>
+      <MainContainer>
+        <ContainerQuote>
+          <Quote>
+            <div className="icon">❝</div>
+            {value.quote}
+          </Quote>
+          <Sign>
+            <span className="character">{value.character}</span>
+            <br />
+            <span className="season">{value.season}</span> -{" "}
+            <span className="episode">{value.episode}</span>
+          </Sign>
+        </ContainerQuote>
+      </MainContainer>
       {!playAuto ?
       <ButtonContainer>
-        <Button onClick={handleClick}>Une autre !</Button>
-        <Button onClick={handleShare}>Copier lien</Button>
+        <Button onClick={handleClick}>›</Button>
+        {/* <Button onClick={handleShare}>Copier lien</Button> */}
       </ButtonContainer> : null
       }
       {copied ? <span className="share">lien copié !</span> : null}
@@ -63,11 +65,10 @@ export default () => {
 
 const Container = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   flex: 1;
-  max-width: 50%;
   padding: 2rem 1rem;
   color: #fff;
   .share {
@@ -83,6 +84,13 @@ const ContainerQuote = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  max-width:60%;
+`;
+const MainContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex:1;
 `;
 
 const Quote = styled.div`
@@ -119,6 +127,7 @@ const Sign = styled.div`
 
 const ButtonContainer = styled.div`
   display: flex;
+  self-align: flex-end;
   justify-content: space-between; 
   flex-direction: column;
 `
@@ -129,7 +138,8 @@ const Button = styled.button`
   border: 1px solid #eee;
   color: #eee;
   border-radius: 999999px;
-  padding: 0.5rem 2rem;
+  width:2rem;
+  height:2rem;
   font-size: 1rem;
   outline: none;
   cursor: pointer;
@@ -138,5 +148,7 @@ const Button = styled.button`
     /* box-shadow: rgba(255, 255, 255, 0.4) 0px 2px 12px 0px; */
     background-color: #eee;
     color: #333;
+    transform: scale(1.25);
   }
+  transition: all 0.2s ease-in-out;
 `;
