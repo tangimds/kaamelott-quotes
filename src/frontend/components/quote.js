@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import quotes from "../../quotes";
 import { _random, useQuery, getQuote, queryToObject } from "../../utils";
 import styled from "styled-components";
@@ -6,8 +6,11 @@ import styled from "styled-components";
 export default () => {
   const query = useQuery();
   const [copied, setCopied] = useState();
+  const [playAuto, setPlayAuto] = useState(false);
+
   const get = () => {
-    const { data } = getQuote({ array: quotes, query: queryToObject(query) });
+    const queryObject = queryToObject(query)
+    const { data } = getQuote({ array: quotes, query: { text: queryObject.text, livre: queryObject.livre, perso: queryObject.perso } });
     return data;
   };
   const [value, setValue] = useState(get());
@@ -20,6 +23,19 @@ export default () => {
     navigator.clipboard.writeText(link);
     setCopied(true);
   };
+
+  useEffect(() => {
+    let interval;
+    const queryObject = queryToObject(query)
+    if (queryObject.play === 'auto') {
+      setPlayAuto(true);
+      interval = setInterval(() => {
+        handleClick()
+      }, (Math.max(1, (Number(queryObject.t) || 1))) * 1000);
+    }
+    return () => clearInterval(interval);
+  }, [query]);
+
   return (
     <Container>
       <ContainerQuote>
@@ -34,8 +50,12 @@ export default () => {
           <span className="episode">{value.episode}</span>
         </Sign>
       </ContainerQuote>
-      <Button onClick={handleClick}>Une autre !</Button>
-      <Button onClick={handleShare}>Partager</Button>
+      {!playAuto ?
+      <ButtonContainer>
+        <Button onClick={handleClick}>Une autre !</Button>
+        <Button onClick={handleShare}>Copier lien</Button>
+      </ButtonContainer> : null
+      }
       {copied ? <span className="share">lien copié !</span> : null}
     </Container>
   );
@@ -96,6 +116,12 @@ const Sign = styled.div`
     font-size: 0.65rem;
   }
 `;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between; 
+  flex-direction: column;
+`
 
 const Button = styled.button`
   -webkit-tap-highlight-color: transparent;
