@@ -53,7 +53,6 @@ const ContainerStyle = styled.div`
   background-repeat: no-repeat;
   background-position: center center;
   z-index: 0;
-
   ::before {
     z-index: -1;
     content: "";
