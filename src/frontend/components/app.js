@@ -9,6 +9,18 @@ export default () => {
   const [backgroundUrl, setBackgroundUrl] = useState();
   useEffect(() => {
     setBackgroundUrl(getBackground());
+
+    console.log("%c██╗░░██╗░█████╗░░█████╗░███╗░░░███╗███████╗██╗░░░░░░█████╗░████████╗████████╗\n"+
+"██║░██╔╝██╔══██╗██╔══██╗████╗░████║██╔════╝██║░░░░░██╔══██╗╚══██╔══╝╚══██╔══╝\n"+
+"█████═╝░███████║███████║██╔████╔██║█████╗░░██║░░░░░██║░░██║░░░██║░░░░░░██║░░░\n"+
+"██╔═██╗░██╔══██║██╔══██║██║╚██╔╝██║██╔══╝░░██║░░░░░██║░░██║░░░██║░░░░░░██║░░░\n"+
+"██║░╚██╗██║░░██║██║░░██║██║░╚═╝░██║███████╗███████╗╚█████╔╝░░░██║░░░░░░██║░░░\n"+
+"╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝╚══════╝░╚════╝░░░░╚═╝░░░░░░╚═╝░░░\n", "color: #999; font-size: .6rem;");
+    console.log("%cParamètres url :","font-family:monospace; font-size: 14px;");
+    console.log("\n");
+    console.log("%c text | citation : citation contenant ce texte","font-family:monospace; font-size: 11px");
+    console.log("%c livre : citation venant du livre","font-family:monospace; font-size: 11px");
+    console.log("%c personnage | perso : citation prononcé par ce personnage","font-family:monospace; font-size: 11px");
   }, []);
 
   if (!backgroundUrl) return <div>Chargement...</div>;
@@ -18,7 +30,6 @@ export default () => {
         <Body>
           <Quote />
         </Body>
-        <Footer />
       </Container>
     </Router>
   );
