@@ -95,7 +95,7 @@ const MainContainer = styled.div`
 
 const Quote = styled.div`
   display: flex;
-  font-size: 1.5rem;
+  font-size: 3rem;
   div {
     font-size: 2rem;
     margin-right: 0.5rem;
@@ -112,7 +112,7 @@ const Quote = styled.div`
 const Sign = styled.div`
   color: #eee;
   margin: 1rem 0;
-  font-size: 0.8rem;
+  font-size: 1.2rem;
   font-style: italic;
   .character {
     font-weight: bold;
