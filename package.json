@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "DEV_ENV=true nodemon --ext '.js,.jsx' --ignore 'dist' index.js",
-    "build": "npx babel-cli src --out-dir lib --copy-files --extensions '.ts,.js'",
+    "build": "babel-cli src --out-dir lib --copy-files --extensions '.ts,.js'",
     "start": "node index.js"
   },
   "heroku-run-build-script": true,
