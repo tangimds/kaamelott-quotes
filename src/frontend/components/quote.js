@@ -79,7 +79,6 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex: 1;
-  padding: 2rem 1rem;
   color: #fff;
   .share {
     font-size: 0.8rem;

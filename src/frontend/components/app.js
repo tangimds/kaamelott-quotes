@@ -71,12 +71,21 @@ const ContainerStyle = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #343434;
-  // background-image: url(${({ backgroundUrl }) => backgroundUrl});
-  // background-size: cover;
-  // background-repeat: no-repeat;
-  // background-position: center center;
+  background-image: url(${({ backgroundUrl }) => backgroundUrl});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
   z-index: 0;
+  ::before {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.9);
+  }
 `;
 
 const Body = styled.div`
