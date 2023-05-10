@@ -5,8 +5,6 @@ import styled from "styled-components";
 
 export default () => {
   const query = useQuery();
-  const [copied, setCopied] = useState();
-  const [playAuto, setPlayAuto] = useState(false);
 
   const get = () => {
     const queryObject = queryToObject(query);
@@ -23,20 +21,12 @@ export default () => {
   const [value, setValue] = useState(get());
   const handleClick = () => {
     setValue(get());
-    setCopied(false);
-  };
-
-  const handleShare = () => {
-    const link = window.location.origin + "?id=" + value.id;
-    navigator.clipboard.writeText(link);
-    setCopied(true);
   };
 
   useEffect(() => {
     let interval;
     const queryObject = queryToObject(query);
     if (queryObject.play === "auto") {
-      setPlayAuto(true);
       interval = setInterval(() => {
         handleClick();
       }, Math.max(1, Number(queryObject.t) || 1) * 1000);
@@ -46,27 +36,39 @@ export default () => {
 
   return (
     <Container>
-      <MainContainer>
+      <MainContainer onClick={handleClick}>
         <ContainerQuote>
-          <Quote>
-            <div className="icon">"</div>
-            {value.quote}
-          </Quote>
-          <Sign>
-            <span className="character">{value.character}</span>
-            <br />
-            <span className="season">{value.season}</span> -{" "}
-            <span className="episode">{value.episode}</span>
-          </Sign>
+          <img
+            src="./assets/images/quotation-mark.png"
+            width="80"
+            height="80"
+          />
+          <Quote>{value.quote}</Quote>
+          <hr
+            style={{
+              width: "30%",
+              border: "0.5px solid white",
+              opacity: "0.5",
+              margin: "2.25rem 0",
+            }}
+          />
+          <SignContainer>
+            <img
+              style={{ borderRadius: "50%" }}
+              src="./assets/images/characters/perceval.png"
+              width="50"
+              height="50"
+            />
+            <Sign>
+              <span className="character">{value.character}</span>
+              <br />
+              <span className="episode">
+                {value.season} - {value.episode}
+              </span>
+            </Sign>
+          </SignContainer>
         </ContainerQuote>
       </MainContainer>
-      {!playAuto ? (
-        <ButtonContainer>
-          <Button onClick={handleClick}>›</Button>
-          {/* <Button onClick={handleShare}>Copier lien</Button> */}
-        </ButtonContainer>
-      ) : null}
-      {copied ? <span className="share">lien copié !</span> : null}
     </Container>
   );
 };
@@ -88,79 +90,51 @@ const Container = styled.div`
     padding: 2rem 4rem 2rem 1rem; // typeform aera
   }
 `;
+
 const ContainerQuote = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   max-width: 60%;
 `;
 const MainContainer = styled.div`
+  cursor: pointer;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   flex: 1;
 `;
 
 const Quote = styled.div`
+  text-align: center;
+  font-family: "Roboto";
   display: flex;
-  font-size: 3rem;
-  div {
-    font-size: 2rem;
-    margin-right: 0.5rem;
-  }
+  font-size: 1.5rem;
   @media (max-width: 768px) {
     font-size: 1rem;
-    div {
-      font-size: 1.3rem;
-      margin-right: 0.3rem;
-    }
   }
-  .icon {
-    font-size: 8rem;
-    font-family: "folkard";
-  }
+`;
+
+const SignContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 `;
 
 const Sign = styled.div`
   color: #eee;
-  margin: 1rem 0;
   font-size: 1.2rem;
-  font-style: italic;
   .character {
     font-family: "folkard";
   }
-  .season.episode {
+  .episode {
+    font-family: "Roboto";
     color: #ccc;
+    font-size: 0.9rem;
   }
   @media (max-width: 768px) {
     font-size: 0.65rem;
   }
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  self-align: flex-end;
-  justify-content: space-between;
-  flex-direction: column;
-`;
-
-const Button = styled.button`
-  -webkit-tap-highlight-color: transparent;
-  background-color: transparent;
-  border: 1px solid #eee;
-  color: #eee;
-  border-radius: 999999px;
-  width: 2rem;
-  height: 2rem;
-  font-size: 1rem;
-  outline: none;
-  cursor: pointer;
-  margin: 0.3rem;
-  :hover {
-    /* box-shadow: rgba(255, 255, 255, 0.4) 0px 2px 12px 0px; */
-    background-color: #eee;
-    color: #333;
-    transform: scale(1.25);
-  }
-  transition: all 0.2s ease-in-out;
 `;

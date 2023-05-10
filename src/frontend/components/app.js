@@ -9,20 +9,40 @@ export default () => {
   useEffect(() => {
     setBackgroundUrl(getBackground());
 
-    console.log("%c██╗░░██╗░█████╗░░█████╗░███╗░░░███╗███████╗██╗░░░░░░█████╗░████████╗████████╗\n"+
-"██║░██╔╝██╔══██╗██╔══██╗████╗░████║██╔════╝██║░░░░░██╔══██╗╚══██╔══╝╚══██╔══╝\n"+
-"█████═╝░███████║███████║██╔████╔██║█████╗░░██║░░░░░██║░░██║░░░██║░░░░░░██║░░░\n"+
-"██╔═██╗░██╔══██║██╔══██║██║╚██╔╝██║██╔══╝░░██║░░░░░██║░░██║░░░██║░░░░░░██║░░░\n"+
-"██║░╚██╗██║░░██║██║░░██║██║░╚═╝░██║███████╗███████╗╚█████╔╝░░░██║░░░░░░██║░░░\n"+
-"╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝╚══════╝░╚════╝░░░░╚═╝░░░░░░╚═╝░░░\n", "color: #999; font-size: .6rem;");
-    console.log("%cParamètres url :","font-family:monospace; font-size: 14px;");
+    console.log(
+      "%c██╗░░██╗░█████╗░░█████╗░███╗░░░███╗███████╗██╗░░░░░░█████╗░████████╗████████╗\n" +
+        "██║░██╔╝██╔══██╗██╔══██╗████╗░████║██╔════╝██║░░░░░██╔══██╗╚══██╔══╝╚══██╔══╝\n" +
+        "█████═╝░███████║███████║██╔████╔██║█████╗░░██║░░░░░██║░░██║░░░██║░░░░░░██║░░░\n" +
+        "██╔═██╗░██╔══██║██╔══██║██║╚██╔╝██║██╔══╝░░██║░░░░░██║░░██║░░░██║░░░░░░██║░░░\n" +
+        "██║░╚██╗██║░░██║██║░░██║██║░╚═╝░██║███████╗███████╗╚█████╔╝░░░██║░░░░░░██║░░░\n" +
+        "╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝╚══════╝░╚════╝░░░░╚═╝░░░░░░╚═╝░░░\n",
+      "color: #999; font-size: .6rem;"
+    );
+    console.log(
+      "%cParamètres url :",
+      "font-family:monospace; font-size: 14px;"
+    );
     console.log("\n");
-    console.log("%c ?text=x : citation contenant le texte `x`","font-family:monospace; font-size: 11px");
-    console.log("%c ?livre=x : citation venant du livre `x`","font-family:monospace; font-size: 11px");
-    console.log("%c ?perso=x : citation prononcé par le personnage `x`","font-family:monospace; font-size: 11px");
-    console.log("%c ?play=auto : les citations défilent toutes les 1 seconde par défaut","font-family:monospace; font-size: 11px");
-    console.log("%c ?t=x : période de défilement (toutes les `x` seconde)","font-family:monospace; font-size: 11px");
-
+    console.log(
+      "%c ?text=x : citation contenant le texte `x`",
+      "font-family:monospace; font-size: 11px"
+    );
+    console.log(
+      "%c ?livre=x : citation venant du livre `x`",
+      "font-family:monospace; font-size: 11px"
+    );
+    console.log(
+      "%c ?perso=x : citation prononcé par le personnage `x`",
+      "font-family:monospace; font-size: 11px"
+    );
+    console.log(
+      "%c ?play=auto : les citations défilent toutes les 1 seconde par défaut",
+      "font-family:monospace; font-size: 11px"
+    );
+    console.log(
+      "%c ?t=x : période de défilement (toutes les `x` seconde)",
+      "font-family:monospace; font-size: 11px"
+    );
   }, []);
 
   if (!backgroundUrl) return <div>Chargement...</div>;
@@ -51,21 +71,12 @@ const ContainerStyle = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: url(${({ backgroundUrl }) => backgroundUrl});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
+  background-color: #343434;
+  // background-image: url(${({ backgroundUrl }) => backgroundUrl});
+  // background-size: cover;
+  // background-repeat: no-repeat;
+  // background-position: center center;
   z-index: 0;
-  ::before {
-    z-index: -1;
-    content: "";
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    background-color: rgba(0, 0, 0, 0.75);
-  }
 `;
 
 const Body = styled.div`
