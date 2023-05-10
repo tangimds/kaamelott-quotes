@@ -16,6 +16,14 @@ export default () => {
       <title>C'est pas faux !</title>
       <link rel="icon" type="image/png" href="/favicon.png" />
       <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+      <style>
+        @font-face {
+          font-family: "folkard";
+          src: local("folkard"),
+            url(".\/fonts\/folkard.ttf") format("truetype");
+          font-weight: normal;
+        }
+      </style>
     </head>
     <body style="margin:0;padding:0">
       <div id="root">${html}</div>

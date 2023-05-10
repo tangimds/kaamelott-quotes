@@ -9,8 +9,15 @@ export default () => {
   const [playAuto, setPlayAuto] = useState(false);
 
   const get = () => {
-    const queryObject = queryToObject(query)
-    const { data } = getQuote({ array: quotes, query: { text: queryObject.text, livre: queryObject.livre, perso: queryObject.perso } });
+    const queryObject = queryToObject(query);
+    const { data } = getQuote({
+      array: quotes,
+      query: {
+        text: queryObject.text,
+        livre: queryObject.livre,
+        perso: queryObject.perso,
+      },
+    });
     return data;
   };
   const [value, setValue] = useState(get());
@@ -18,6 +25,7 @@ export default () => {
     setValue(get());
     setCopied(false);
   };
+
   const handleShare = () => {
     const link = window.location.origin + "?id=" + value.id;
     navigator.clipboard.writeText(link);
@@ -26,12 +34,12 @@ export default () => {
 
   useEffect(() => {
     let interval;
-    const queryObject = queryToObject(query)
-    if (queryObject.play === 'auto') {
+    const queryObject = queryToObject(query);
+    if (queryObject.play === "auto") {
       setPlayAuto(true);
       interval = setInterval(() => {
-        handleClick()
-      }, (Math.max(1, (Number(queryObject.t) || 1))) * 1000);
+        handleClick();
+      }, Math.max(1, Number(queryObject.t) || 1) * 1000);
     }
     return () => clearInterval(interval);
   }, [query]);
@@ -41,7 +49,7 @@ export default () => {
       <MainContainer>
         <ContainerQuote>
           <Quote>
-            <div className="icon">❝</div>
+            <div className="icon">"</div>
             {value.quote}
           </Quote>
           <Sign>
@@ -52,12 +60,12 @@ export default () => {
           </Sign>
         </ContainerQuote>
       </MainContainer>
-      {!playAuto ?
-      <ButtonContainer>
-        <Button onClick={handleClick}>›</Button>
-        {/* <Button onClick={handleShare}>Copier lien</Button> */}
-      </ButtonContainer> : null
-      }
+      {!playAuto ? (
+        <ButtonContainer>
+          <Button onClick={handleClick}>›</Button>
+          {/* <Button onClick={handleShare}>Copier lien</Button> */}
+        </ButtonContainer>
+      ) : null}
       {copied ? <span className="share">lien copié !</span> : null}
     </Container>
   );
@@ -84,13 +92,13 @@ const ContainerQuote = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  max-width:60%;
+  max-width: 60%;
 `;
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex:1;
+  flex: 1;
 `;
 
 const Quote = styled.div`
@@ -107,6 +115,10 @@ const Quote = styled.div`
       margin-right: 0.3rem;
     }
   }
+  .icon {
+    font-size: 8rem;
+    font-family: "folkard";
+  }
 `;
 
 const Sign = styled.div`
@@ -115,7 +127,7 @@ const Sign = styled.div`
   font-size: 1.2rem;
   font-style: italic;
   .character {
-    font-weight: bold;
+    font-family: "folkard";
   }
   .season.episode {
     color: #ccc;
@@ -128,9 +140,9 @@ const Sign = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   self-align: flex-end;
-  justify-content: space-between; 
+  justify-content: space-between;
   flex-direction: column;
-`
+`;
 
 const Button = styled.button`
   -webkit-tap-highlight-color: transparent;
@@ -138,8 +150,8 @@ const Button = styled.button`
   border: 1px solid #eee;
   color: #eee;
   border-radius: 999999px;
-  width:2rem;
-  height:2rem;
+  width: 2rem;
+  height: 2rem;
   font-size: 1rem;
   outline: none;
   cursor: pointer;
