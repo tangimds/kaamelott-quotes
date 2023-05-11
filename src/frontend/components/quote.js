@@ -55,7 +55,7 @@ export default () => {
           <SignContainer>
             <img
               style={{ borderRadius: "50%" }}
-              src="./assets/images/characters/perceval.png"
+              src={`./assets/images/characters/${value.character}.png`}
               width="50"
               height="50"
             />

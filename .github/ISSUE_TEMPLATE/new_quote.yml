@@ -114,64 +114,64 @@ body:
       label: Personnage
       description: Quel est le personnage en scène ?
       options:
-        - Arthur
-        - Léodagan de Carmélide
-        - Perceval de Galles
-        - Karadoc de Vannes
-        - Guenièvre
-        - Lancelot du Lac
-        - Bohort de Gaunes
-        - Père Blaise
-        - Séli
-        - Merlin
-        - La Dame du Lac
-        - Yvain, chevalier au Lion
-        - Calogrenant
-        - Kadoc
-        - Gauvain, chevalier au Pancréas
-        - Mevanwi
-        - Le tavernier
-        - Galessin
-        - Hervé de Rinel
-        - Venec
-        - Demetra
-        - Maître d’armes
-        - Guethenoc
-        - Loth
-        - Élias de Kelliwic'h
-        - Angharad
-        - Ygerne de Tintagel
-        - Roparzh
-        - Dagonet
-        - Méléagant
-        - Prisca
-        - Grüdü
-        - Lionel de Gaunes
-        - César
-        - Appius Manilius
-        - Manius Macrinus Firmus
         - Aconia Minor
-        - Urgan
-        - Jacca
-        - Caius Camillus
-        - Le roi Burgonde
-        - Verinus
-        - Spurius Cordius Frontinius
-        - Séfriane d'Aquitaine
-        - Lucius Silius Sallustius
-        - Jurisconsulte
-        - l'interprète
-        - Goustan de Carmélide
-        - Edern
-        - Le Duc d'Aquitaine
-        - Publius Servius Capito
-        - Cryda de Tintagel
-        - Breccan
-        - Attila
+        - Angharad
         - Anna de Tintagel
-        - Les jumelles du pêcheur
+        - Appius Manilius
+        - Arthur
+        - Attila
         - Belt
+        - Bohort de Gaunes
+        - Breccan
+        - Caius Camillus
+        - Calogrenant
+        - César
+        - Cryda de Tintagel
+        - Dagonet
+        - Demetra
         - Drusilla
+        - Edern
+        - Élias de Kelliwic'h
+        - Galessin
+        - Gauvain, chevalier au Pancréas
+        - Goustan de Carmélide
+        - Grüdü
+        - Guenièvre
+        - Guethenoc
+        - Hervé de Rinel
+        - Jacca
+        - Jurisconsulte
+        - Kadoc
+        - Karadoc de Vannes
+        - l'interprète
+        - La Dame du Lac
+        - Lancelot du Lac
+        - Le Duc d'Aquitaine
+        - Le roi Burgonde
+        - Le tavernier
+        - Léodagan de Carmélide
+        - Les jumelles du pêcheur
+        - Lionel de Gaunes
+        - Loth
+        - Lucius Silius Sallustius
+        - Maître d’armes
+        - Manius Macrinus Firmus
+        - Méléagant
+        - Merlin
+        - Mevanwi
+        - Perceval de Galles
+        - Père Blaise
+        - Prisca
+        - Publius Servius Capito
+        - Roparzh
+        - Séfriane d'Aquitaine
+        - Séli
+        - Spurius Cordius Frontinius
+        - Urgan
+        - Venec
+        - Verinus
+        - Ygerne de Tintagel
+        - Yvain, chevalier au Lion
     validations:
       required: true
   - type: input
