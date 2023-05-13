@@ -86,7 +86,7 @@ const Container = styled.div`
   }
   @media (max-width: 768px) {
     max-width: 100%;
-    padding: 2rem 4rem 2rem 1rem; // typeform aera
+    padding: 2rem; // typeform aera
   }
 `;
 
@@ -95,6 +95,9 @@ const ContainerQuote = styled.div`
   flex-direction: column;
   align-items: center;
   max-width: 60%;
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
 `;
 const MainContainer = styled.div`
   cursor: pointer;
